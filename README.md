@@ -103,7 +103,8 @@ This frontend is a client-rendered SPA (not server-rendered), so per-project Ope
 **Backend — Render or Railway**
 1. Push this repo to GitHub.
 2. Create a new Web Service pointed at `backend/`, with:
-   - Build command: `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
+   - Build command: `pip install -r requirements.txt && python manage.py collectstatic --noinput --upload-unhashed-files && python manage.py migrate`
+     (the `--upload-unhashed-files` flag is required because `django-cloudinary-storage`'s `collectstatic` override otherwise skips copying static files when Cloudinary isn't also your static-file backend, which is the case here — Cloudinary is only used for media uploads)
    - Start command: `gunicorn config.wsgi`
 3. Set env vars: `SECRET_KEY`, `DEBUG=False`, `ALLOWED_HOSTS=<your-backend-domain>`, `DATABASE_URL=<from Supabase/Neon>`, `CORS_ALLOWED_ORIGINS=<your-frontend-domain>`, and `CLOUDINARY_CLOUD_NAME`/`CLOUDINARY_API_KEY`/`CLOUDINARY_API_SECRET` (strongly recommended here — without them, uploaded thumbnails/resume are wiped on every redeploy).
 4. After the first deploy, run `python manage.py createsuperuser` via the host's shell/console to create your production admin account.

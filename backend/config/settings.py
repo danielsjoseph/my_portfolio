@@ -120,6 +120,9 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+# django-cloudinary-storage's collectstatic override checks this legacy
+# pre-Django-4.2 setting directly instead of STORAGES, so both must be defined.
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 # User-uploaded files (project thumbnails, resume). Falls back to local disk if no
 # Cloudinary credentials are set — fine for local dev, but on free-tier hosts with
