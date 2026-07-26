@@ -109,8 +109,17 @@ This frontend is a client-rendered SPA (not server-rendered), so per-project Ope
 3. Set env vars: `SECRET_KEY`, `DEBUG=False`, `ALLOWED_HOSTS=<your-backend-domain>`, `DATABASE_URL=<from Supabase/Neon>`, `CORS_ALLOWED_ORIGINS=<your-frontend-domain>`, and `CLOUDINARY_CLOUD_NAME`/`CLOUDINARY_API_KEY`/`CLOUDINARY_API_SECRET` (strongly recommended here — without them, uploaded thumbnails/resume are wiped on every redeploy).
 4. After the first deploy, run `python manage.py createsuperuser` via the host's shell/console to create your production admin account.
 
-**Frontend — Netlify or Vercel**
-1. Create a new site pointed at `frontend/`, build command `npm run build`, publish directory `dist`.
+**Frontend — Netlify, Vercel, or Render Static Site**
+1. Create a new static site pointed at `frontend/`, build command `npm install && npm run build`, publish directory `dist`.
 2. Set env var `VITE_API_URL=https://<your-backend-domain>/api`.
+3. **Add a SPA rewrite rule**: `/*` → `/index.html` (type: rewrite). Without this, direct navigation or a page refresh on any client-side route (`/projects`, `/about`, `/projects/<slug>`) 404s, since the static host doesn't know about React Router's routes — only `/` resolves without it. On Render this is set via the API (`POST /v1/services/:id/routes`) or dashboard **Redirects/Rewrites** tab, not a repo file.
 
 **Custom domain**: optional, point it at the frontend host; update `ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS` on the backend accordingly.
+
+### This project's actual live deployment
+
+- Backend: `https://my-portfolio-api-co1s.onrender.com` (Render Web Service)
+- Frontend: `https://my-portfolio-diqa.onrender.com` (Render Static Site)
+- Database: Supabase Postgres (`aws-0-eu-central-1` pooler — the direct `db.*.supabase.co` host only resolves over IPv6 in some networks, so the pooler connection string is used instead)
+- Media/uploads: Cloudinary
+- Both Render services auto-deploy on push to `main`.
