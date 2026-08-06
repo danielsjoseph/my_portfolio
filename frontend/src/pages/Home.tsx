@@ -5,6 +5,7 @@ import type { Project } from "../types/project";
 import ProjectCard from "../components/ProjectCard";
 import SkillsSection from "../components/SkillsSection";
 import ContactSection from "../components/ContactSection";
+import WakingDatabase from "../components/WakingDatabase";
 import { siteConfig } from "../config/site";
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
 
       <section>
         <h2 className="mb-4 text-xl font-semibold">Featured projects</h2>
-        {loading && <p className="text-slate-500 dark:text-slate-400">Loading…</p>}
+        {loading && <WakingDatabase />}
         {error && <p className="text-red-500">{error}</p>}
         {!loading && !error && featured.length === 0 && (
           <p className="text-slate-500 dark:text-slate-400">

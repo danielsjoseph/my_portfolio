@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { fetchProject } from "../api/projects";
 import type { Project } from "../types/project";
+import WakingDatabase from "../components/WakingDatabase";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -23,7 +24,11 @@ export default function ProjectDetail() {
   }, [slug]);
 
   if (loading) {
-    return <p className="mx-auto max-w-3xl px-4 py-12 text-slate-500 dark:text-slate-400">Loading…</p>;
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-12">
+        <WakingDatabase />
+      </div>
+    );
   }
 
   if (error || !project) {

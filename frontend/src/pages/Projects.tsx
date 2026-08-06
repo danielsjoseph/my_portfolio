@@ -4,6 +4,7 @@ import { fetchProjects, fetchTags } from "../api/projects";
 import type { Project, Tag } from "../types/project";
 import ProjectCard from "../components/ProjectCard";
 import TagFilter from "../components/TagFilter";
+import WakingDatabase from "../components/WakingDatabase";
 
 export default function Projects() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -45,7 +46,7 @@ export default function Projects() {
         <TagFilter tags={tags} selected={selectedTag} onSelect={handleSelectTag} />
       </div>
 
-      {loading && <p className="text-slate-500 dark:text-slate-400">Loading…</p>}
+      {loading && <WakingDatabase />}
       {error && <p className="text-red-500">{error}</p>}
       {!loading && !error && projects.length === 0 && (
         <p className="text-slate-500 dark:text-slate-400">No projects found.</p>
