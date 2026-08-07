@@ -4,7 +4,7 @@ import { fetchProfile } from "../api/projects";
 import { siteConfig } from "../config/site";
 
 export default function About() {
-  const [resumeUrl, setResumeUrl] = useState<string | null>(siteConfig.resumeUrl);
+  const [resumeUrl, setResumeUrl] = useState<string | null>(null);
   const [showResume, setShowResume] = useState(true);
 
   useEffect(() => {
@@ -15,8 +15,6 @@ export default function About() {
       .catch(() => {});
   }, []);
 
-  const isViewablePdf = !!resumeUrl && resumeUrl.split("?")[0].toLowerCase().endsWith(".pdf");
-
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
       <h1 className="text-3xl font-bold">About</h1>
@@ -25,32 +23,26 @@ export default function About() {
 
       {resumeUrl && (
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          {isViewablePdf && (
-            <button
-              type="button"
-              onClick={() => setShowResume((v) => !v)}
-              className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-            >
-              {showResume ? "Hide resume" : "View resume"}
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={() => setShowResume((v) => !v)}
+            className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+          >
+            {showResume ? "Hide resume" : "View resume"}
+          </button>
           <a
             href={resumeUrl}
             download
-            className={
-              isViewablePdf
-                ? "text-sm text-slate-500 underline hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
-                : "rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
-            }
+            className="text-sm text-slate-500 underline hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
           >
-            {isViewablePdf ? "Download PDF" : "Download resume"}
+            Download PDF
           </a>
         </div>
       )}
 
-      {isViewablePdf && showResume && (
+      {resumeUrl && showResume && (
         <iframe
-          src={resumeUrl!}
+          src={resumeUrl}
           title="Resume"
           className="mt-6 h-[80vh] w-full rounded-lg border border-slate-200 dark:border-slate-800"
         />

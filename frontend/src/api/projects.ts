@@ -1,6 +1,8 @@
 import type { Project, Tag } from "../types/project";
 
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8001/api";
+// Relative path — same origin as the API in production (Django serves the
+// built frontend directly), and proxied to Django by Vite's dev server locally.
+const API_URL = "/api";
 
 async function request<T>(path: string): Promise<T> {
   const res = await fetch(`${API_URL}${path}`);

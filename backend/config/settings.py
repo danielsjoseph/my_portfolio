@@ -36,14 +36,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cloudinary",
     "rest_framework",
-    "corsheaders",
     "projects",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -112,6 +110,15 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# The built React app (npm run build in frontend/) is served under /static/react/
+# — same origin as the API, so no CORS needed. See config/spa.py for the catch-all
+# view that serves frontend/dist/index.html for client-side routes.
+STATICFILES_DIRS = []
+_frontend_dist = BASE_DIR.parent / "frontend" / "dist"
+if _frontend_dist.exists():
+    STATICFILES_DIRS.append(("react", _frontend_dist))
+
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -157,10 +164,3 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ],
 }
-
-
-# CORS - allow the Vite dev server and an env-configurable production frontend origin
-CORS_ALLOWED_ORIGINS = env.list(
-    "CORS_ALLOWED_ORIGINS",
-    default=["http://localhost:5173", "http://127.0.0.1:5173"],
-)

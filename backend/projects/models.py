@@ -13,7 +13,9 @@ def resume_storage():
         from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
         return RawMediaCloudinaryStorage()
-    return None
+    from django.core.files.storage import default_storage
+
+    return default_storage
 
 
 class Tag(models.Model):

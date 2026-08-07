@@ -8,8 +8,9 @@ export const siteConfig = {
 Replace this paragraph (and everything else in src/config/site.ts) with your own bio, skills, and links.`,
   email: "josephdaniels3x@gmail.com",
   phone: "+2349033899569",
-  resumeUrl: "/resume.pdf",
-  photoUrl: "/profile.jpg",
+  // import.meta.env.BASE_URL respects Vite's configured base path (public-folder
+  // assets are served under it too), so this resolves correctly in prod and dev.
+  photoUrl: `${import.meta.env.BASE_URL}profile.jpg`,
   social: {
     github: "https://github.com/danielsjoseph",
     linkedin: "https://www.linkedin.com/in/joseph-daniels-1b45891a9",
