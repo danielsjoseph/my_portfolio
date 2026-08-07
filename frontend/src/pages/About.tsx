@@ -5,7 +5,7 @@ import { siteConfig } from "../config/site";
 
 export default function About() {
   const [resumeUrl, setResumeUrl] = useState<string | null>(siteConfig.resumeUrl);
-  const [showResume, setShowResume] = useState(false);
+  const [showResume, setShowResume] = useState(true);
 
   useEffect(() => {
     fetchProfile()
