@@ -19,9 +19,9 @@ export default function DarkModeToggle() {
       type="button"
       onClick={() => setDark((d) => !d)}
       aria-label="Toggle dark mode"
-      className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+      className="rounded-md border border-slate-300 px-2 py-1.5 text-sm text-slate-700 transition hover:bg-slate-100 sm:px-3 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
     >
-      {dark ? "☀️ Light" : "🌙 Dark"}
+      {dark ? "☀️" : "🌙"} <span className="hidden sm:inline">{dark ? "Light" : "Dark"}</span>
     </button>
   );
 }

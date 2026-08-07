@@ -11,11 +11,11 @@ const links = [
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <NavLink to="/" className="text-lg font-semibold">
+      <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-4 py-3">
+        <NavLink to="/" className="text-base font-semibold whitespace-nowrap sm:text-lg">
           {siteConfig.name}
         </NavLink>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 sm:gap-6">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -30,6 +30,26 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href={`tel:${siteConfig.phone}`}
+              title="Call me"
+              aria-label="Call me"
+              className="text-base text-slate-500 transition hover:text-slate-950 sm:text-lg dark:text-slate-400 dark:hover:text-white"
+            >
+              📞
+            </a>
+            <a
+              href={siteConfig.social.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              title="WhatsApp"
+              aria-label="WhatsApp"
+              className="text-base text-slate-500 transition hover:text-slate-950 sm:text-lg dark:text-slate-400 dark:hover:text-white"
+            >
+              💬
+            </a>
+          </div>
           <DarkModeToggle />
         </div>
       </nav>
