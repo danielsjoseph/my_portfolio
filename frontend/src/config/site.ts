@@ -7,11 +7,13 @@ export const siteConfig = {
 
 Replace this paragraph (and everything else in src/config/site.ts) with your own bio, skills, and links.`,
   email: "josephdaniels3x@gmail.com",
+  phone: "+2349033899569",
   resumeUrl: "/resume.pdf",
   photoUrl: "/profile.jpg",
   social: {
     github: "https://github.com/danielsjoseph",
     linkedin: "https://www.linkedin.com/in/joseph-daniels-1b45891a9",
+    whatsapp: "https://wa.me/2349033899569",
   },
   skills: [
     "React",

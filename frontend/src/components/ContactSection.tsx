@@ -15,6 +15,20 @@ export default function ContactSection() {
           Email me
         </a>
         <a
+          href={`tel:${siteConfig.phone}`}
+          className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+        >
+          Call me
+        </a>
+        <a
+          href={siteConfig.social.whatsapp}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+        >
+          WhatsApp
+        </a>
+        <a
           href={siteConfig.social.github}
           target="_blank"
           rel="noreferrer"
