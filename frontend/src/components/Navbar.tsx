@@ -30,26 +30,6 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={`tel:${siteConfig.phone}`}
-              title="Call me"
-              aria-label="Call me"
-              className="text-base text-slate-500 transition hover:text-slate-950 sm:text-lg dark:text-slate-400 dark:hover:text-white"
-            >
-              📞
-            </a>
-            <a
-              href={siteConfig.social.whatsapp}
-              target="_blank"
-              rel="noreferrer"
-              title="WhatsApp"
-              aria-label="WhatsApp"
-              className="text-base text-slate-500 transition hover:text-slate-950 sm:text-lg dark:text-slate-400 dark:hover:text-white"
-            >
-              💬
-            </a>
-          </div>
           <DarkModeToggle />
         </div>
       </nav>
