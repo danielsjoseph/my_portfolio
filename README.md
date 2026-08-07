@@ -133,7 +133,7 @@ That's the whole deployment — one service, one Dockerfile, no separate fronten
 
 ### This project's actual live deployment
 
-- App: `https://my-portfolio-api-co1s.onrender.com` (Render Web Service, Docker runtime — serves both the API and the built frontend from one origin)
+- App: `https://my-portfolio-merged.onrender.com` (Render Web Service, Docker runtime — serves both the API and the built frontend from one origin)
 - Database: Supabase Postgres (`aws-0-eu-central-1` pooler — the direct `db.*.supabase.co` host only resolves over IPv6 in some networks, so the pooler connection string is used instead)
 - Media/uploads: Cloudinary
 - Auto-deploys on push to `main`.
